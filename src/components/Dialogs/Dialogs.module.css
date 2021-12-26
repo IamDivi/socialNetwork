@@ -1,0 +1,47 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 4fr 10fr;
+    padding: 30px;
+}
+.dialog_item {
+   
+    
+}
+.dialog_item a{
+    display: block;
+    border: rgb(65, 65, 65) solid 1px;
+    margin-right: 80px;
+    margin-bottom: -1px;
+    padding: 20px;
+    text-decoration: none;
+    
+}
+
+.message_item {
+    border: rgb(65, 65, 65) solid 1px;
+    margin-bottom: -1px;
+    padding: 20px;
+    
+}
+
+.dialog_item a.active{
+    color: burlywood;
+    background-color: rgb(31, 31, 221);
+}
+.send_message {
+padding: 10px;
+}
+.message_input {
+    display: block;
+    width: 500px;
+    height: 140px;
+    margin-bottom: 8px;
+    overflow-wrap: break-word;
+
+}
+.send_button {
+    background-color: lightblue;
+    width: 150px;
+    padding: 10px;
+    
+}

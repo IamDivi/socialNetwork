@@ -1,0 +1,20 @@
+.app_header {
+  background-color: #053697;
+ height: auto;
+  display: flex;
+  flex-direction: line;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 10px;
+  
+}
+.app_header a{
+  text-decoration: none;
+  color: white;
+}
+.app_header a.active {
+  color: #819705;
+}

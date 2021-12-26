@@ -1,0 +1,23 @@
+
+   .user {
+     display: block;
+     
+     
+     padding: 1px;
+   }
+   .profile {
+    border: #000 solid 1px;
+    
+    display: block;
+   }
+   .avatar {
+    border: #000 solid 1px;
+    border-bottom: none;
+   }
+   .avatar img {
+     width: 50px;
+     border-radius: 50%;
+   }
+   .selectedPage {
+     font-weight: bold;
+   }

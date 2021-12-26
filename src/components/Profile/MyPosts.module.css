@@ -1,0 +1,9 @@
+
+   .posts_wrapper {
+     grid-area: p;
+     border: #000 solid 1px;
+   }
+   .post_input {
+     width: 99%;
+     height: 75px;
+   }
