@@ -1,12 +1,14 @@
 
 import Preloader from "../../common/Preloader/Preloader"
 import style from "./ProfileHeader.module.css"
-import ProfileStatus from "./ProfileStatus"
 import ProfileStatusWihtHook from "./ProfileStatusWithHook"
 
 const ProfileHeader = (props) => {
-  if(!props.profile) {
-    return <Preloader />
+
+  const onMainPhotoSelected = (e) => {
+    if(e.target.files.length) {
+      props.savePhoto(e.target.files[0])
+    }
   }
     return <div className={style.ava_wrapper}>
     <div>
@@ -14,7 +16,9 @@ const ProfileHeader = (props) => {
     </div>
     <div className={style.profile}>
     <div className={style.avatar}>
-      <img className={style.avatar_img} src={props.profile.photos.large != null ? props.profile.photos.large  :"https://seeding.com.ua/wp-content/uploads/2017/04/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D0%BE%D0%B2.jpg"}></img>
+    {props.isOwner && <input type={"file"} id="file" onChange={onMainPhotoSelected} />}
+     <label htmlFor="file"><img className={style.avatar_img} src={props.profile.photos.large != null ? props.profile.photos.large  :"https://seeding.com.ua/wp-content/uploads/2017/04/%D0%B0%D0%B2%D0%B0%D1%82%D0%B0%D1%80%D0%BA%D0%B0-%D0%B4%D0%BB%D1%8F-%D0%BE%D1%82%D0%B7%D1%8B%D0%B2%D0%BE%D0%B2.jpg"}></img>
+     </label> 
     </div>
     <div className={style.status}>
       <div className={style.fullName} >{props.profile.fullName}</div>

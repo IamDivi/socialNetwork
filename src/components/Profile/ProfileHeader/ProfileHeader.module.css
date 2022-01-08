@@ -16,6 +16,9 @@
      display: inline-flex;
      flex-wrap: wrap;
    }
+   input[type="file"] {
+     display: none;
+   }
    .avatar {
      margin-top: -75px;
      padding-left: 50px;
