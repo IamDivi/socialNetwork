@@ -3,6 +3,14 @@ import { auth, securityApi } from "./api/api"
 
 const SET_USER_DATA = "AUTH/SET_USER_DATA"
 const GET_CAPTCHA_URL_SACCESS = "GET_CAPTCHA_URL_SACCESS"
+
+export type initialStateType = {
+    userId: number | null,
+    email: string | null,
+    login: string | null,
+    isAuth: boolean,
+    captchaUrl: string | null
+}
 const initialState = {
     userId: null,
     email: null,
@@ -10,10 +18,10 @@ const initialState = {
     isAuth: false,
     captchaUrl: null
 }
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action: any): initialStateType => {
     switch (action.type) {
         case SET_USER_DATA:
-            case GET_CAPTCHA_URL_SACCESS:
+        case GET_CAPTCHA_URL_SACCESS:
             return {
                 ...state,
                 ...action.payload,
@@ -22,8 +30,25 @@ const authReducer = (state = initialState, action) => {
             return state
     }
 }
-export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
-export const getCaptchaUrlSaccess = (captchaUrl) => ({ type: GET_CAPTCHA_URL_SACCESS, payload: { captchaUrl } })
+type setAuthUserDataActionPayloadType = {
+    userId: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+}
+type setAuthUserDataActionType = {
+    type: typeof SET_USER_DATA,
+    payload: setAuthUserDataActionPayloadType
+}
+
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean): setAuthUserDataActionType =>
+    ({ type: SET_USER_DATA, payload: { userId, email, login, isAuth } })
+type getCaptchaUrlSaccessActionType = { 
+    type: typeof GET_CAPTCHA_URL_SACCESS, 
+    payload: { captchaUrl:string | null } 
+}
+
+export const getCaptchaUrlSaccess = (captchaUrl:string | null):getCaptchaUrlSaccessActionType => ({ type: GET_CAPTCHA_URL_SACCESS, payload: { captchaUrl } })
 export const getAuthUserData = () => {
     return async (dispatch) => {
         const data = await auth.me()
@@ -33,13 +58,13 @@ export const getAuthUserData = () => {
         }
     }
 }
-export const login = (email, password, rememberMe, captcha) => {
+export const login = (email: string, password: string, rememberMe:boolean, captcha:string | null) => {
     return async (dispatch) => {
         const data = await auth.login(email, password, rememberMe, captcha)
         if (data.resultCode === 0) {
             dispatch(getAuthUserData())
         } else {
-            if(data.resultCode === 10) {
+            if (data.resultCode === 10) {
                 dispatch(getCaptchaUrl())
             }
             let errorMessage = data.messages.length > 0 ? data.messages[0] : "Some Error"

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Field, reduxForm } from "redux-form";
+import { reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/formControls/FormControls";
-import {login} from "../../auth-reducer"
+import {login} from "../../auth-reducer.tsx"
 import { Redirect } from "react-router";
 import styles from "../common/formControls/FormControls.module.css"
 

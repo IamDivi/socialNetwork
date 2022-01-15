@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { reset } from "redux-form"
-import { addPostAC } from "../../profile-reducer"
+import { addPostAC } from "../../profile-reducer.ts"
 import MyPosts from "./MyPosts"
 
 
