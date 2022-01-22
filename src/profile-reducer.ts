@@ -1,5 +1,6 @@
 import { stopSubmit } from "redux-form"
 import { profileAPI } from "./api/api"
+import {photosType, postType, profileType} from "./types/types";
 
 const ADD_POST = "ADD-POST"
 const SET_USER_PROFILE = "SET_USER_PROFILE"
@@ -7,28 +8,7 @@ const SET_STATUS = "SET_STATUS"
 const DELETE_POST = "DELETE_POST"
 const SAVE_PHOTO = "SAVE_PHOTO"
 
-type postType = {
-    id: number
-    message: string
-}
-type contactsType = {
-    github:string
-    vk:string
-    facebook:string
-    instagram:string
-    twitter:string
-    website:string
-    youtube:string
-    mainLink:string
-}
-type profileType = {
-    userId: number
-    lookingForAJob:boolean
-    lookingForAJobDescription: string
-    fullName:string,
-    contacts: contactsType
-    
-}
+
 const initialState = {
     postData: [
         { id: 1, message: "Hi, how are you?" },
@@ -69,21 +49,25 @@ const profileReducer = (state = initialState, action):initialStateType => {
             return state
     }
 }
-
-export const addPostAC = (newPostText:string) => ({ type: ADD_POST, newPostText })
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile })
-export const setUserStatus = (status) => ({ type: SET_STATUS, status })
-export const deletePost = (postId) => ({type: DELETE_POST, postId})
-export const savePhotoSaccess = (photos) => ({type: SAVE_PHOTO, photos})
-export const getUserProfile = (userId) =>  async (dispatch) => {
+type addPostACType = {type: typeof ADD_POST, newPostText:string}
+export const addPostAC = (newPostText:string):addPostACType => ({ type: ADD_POST, newPostText })
+type setUserProfileActionType = {type: typeof SET_USER_PROFILE, profile:profileType}
+export const setUserProfile = (profile):setUserProfileActionType => ({ type: SET_USER_PROFILE, profile })
+type setUserStatusACType = {type: typeof SET_STATUS, status:string}
+export const setUserStatus = (status:string):setUserStatusACType => ({ type: SET_STATUS, status })
+type deletePostACType = {type: typeof DELETE_POST, postId:number}
+export const deletePost = (postId:number):deletePostACType => ({type: DELETE_POST, postId})
+type savePhotoSaccessACType = {type: typeof SAVE_PHOTO, photos:photosType}
+export const savePhotoSaccess = (photos:photosType):savePhotoSaccessACType => ({type: SAVE_PHOTO, photos})
+export const getUserProfile = (userId:number) =>  async (dispatch) => {
        const data = await profileAPI.getProfile(userId)
                 dispatch(setUserProfile(data))
 }
-export const getUserStatus = (userId) => async (dispatch) => {
+export const getUserStatus = (userId:number) => async (dispatch) => {
        const response = await profileAPI.getStatus(userId)
             dispatch(setUserStatus(response.data))
 }
-export const updateStatus = (status) => async (dispatch) => {
+export const updateStatus = (status:string) => async (dispatch) => {
 
       try{const response = await profileAPI.updateStatus(status)
             if(response.data.resultCode === 0)
@@ -97,7 +81,7 @@ export const savePhoto = (file) => async (dispatch) => {
           if(response.data.resultCode === 0)
           dispatch(savePhotoSaccess(response.data.data.photos))
 }
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile:photosType) => async (dispatch, getState) => {
     
     const userId = getState().auth.userId
     const response = await profileAPI.saveProfile(profile)

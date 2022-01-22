@@ -1,4 +1,5 @@
 
+// @ts-ignore
 import { getAuthUserData } from './auth-reducer.tsx'
 
 const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"

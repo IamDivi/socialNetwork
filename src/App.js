@@ -4,8 +4,8 @@ import './App.css';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login.jsx';
-import ProfileContainer from './components/Profile/ProfileContainer';
-import UsersContainer from './components/Users/UsersContainer';
+import ProfileContainer from './components/Profile/ProfileContainer.tsx';
+import UsersContainer from './components/Users/UsersContainer.tsx';
 import { initializeApp } from './app-reducer.ts'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -37,7 +37,7 @@ class App extends React.Component {
           <Redirect exact from="/socialNetwork" to="/profile" />
           <Route path="/dialogs" render={() => <DialogsContainer />} />
           <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
-          <Route path="/friends" render={() => <UsersContainer />} />
+          <Route path="/friends" render={() => <UsersContainer pageTitle="friends" />} />
           <Route path="/login" render={() => <Login />} />
           <Route path="*" render={() => <div>404 NOT FOUND</div>} />
 

@@ -1,11 +1,23 @@
-import React, { useState } from "react"
+import React, { ProfilerOnRenderCallback, useState } from "react"
+import { FC } from "react"
+import { appStateType } from "../../redux-store"
+import { profileType } from "../../types/types"
 import Preloader from "../common/Preloader/Preloader"
-import MyPostsContainer from "./MyPostsContainer"
+import MyPostsContainer from "./MyPostsContainer.tsx"
 import style from "./Profile.module.css"
 import ProfileDataFormReduxForm from "./ProfileDataForm"
 import ProfileHeader from "./ProfileHeader/ProfileHeader"
 
-const Profile = ({ profile, ...props }) => {
+type PropsType = {
+  profile: profileType
+  isOwner: boolean
+  status: string
+  updateStatus: (status: string) => void
+  savePhoto: (file: any) => void
+  saveProfile: (formData: any) => any
+  store: appStateType
+}
+const Profile: FC<PropsType> = ({ profile, ...props }) => {
   const [editMode, setEditMode] = useState(false)
   if (!profile) {
     return <Preloader />

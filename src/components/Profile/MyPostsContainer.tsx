@@ -1,16 +1,25 @@
 import { connect } from "react-redux"
 import { reset } from "redux-form"
 import { addPostAC } from "../../profile-reducer.ts"
+import { appStateType } from "../../redux-store"
+import { postType } from "../../types/types"
 import MyPosts from "./MyPosts"
 
+type mapStatePropsType = {
+    newPostText: string
+    posts: Array<postType>
+}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state:appStateType):mapStatePropsType => {
     return {
         newPostText: state.profileState.newPostText,
         posts: state.profileState.postData
     }
 }
-const mapDispatchToProps = (dispatch) => {
+type mapDispatchPropsType = {
+    addPost:(newPostText: string) => void
+}
+const mapDispatchToProps = (dispatch: any):mapDispatchPropsType => {
     return {
         
         addPost: (newPostText) => {
