@@ -11,7 +11,8 @@ const initialState: initialStateType = {
     initialized: false,
 
 }
-const appReducer = (state = initialState, action: any):initialStateType => {
+type ActionType = initializedSuccessActionType
+const appReducer = (state = initialState, action: ActionType):initialStateType => {
 
     switch (action.type) {
         case INITIALIZED_SUCCESS:

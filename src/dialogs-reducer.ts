@@ -1,9 +1,9 @@
 const SEND_MESSAGE = "SEND-MESSAGE"
-type dialogType = {
+export type dialogType = {
     id: number,
     name: string
 }
-type messageType = {
+export type messageType = {
     id:number,
     message:string
 }
@@ -20,7 +20,8 @@ const initialState = {
     ] as Array<messageType>
 }
 export type initialStateType = typeof initialState
-const dialogsReducer = (state = initialState, action):initialStateType => {
+type ActionType = addMessageCreatorActionType
+const dialogsReducer = (state = initialState, action: ActionType):initialStateType => {
     
     switch (action.type) {
       

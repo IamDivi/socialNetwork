@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import DialogsContainer from './components/Dialogs/DialogsContainer';
+import DialogsContainer from './components/Dialogs/DialogsContainer.tsx';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login.jsx';
 import ProfileContainer from './components/Profile/ProfileContainer.tsx';

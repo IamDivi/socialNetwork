@@ -4,9 +4,16 @@ import { reset } from "redux-form"
 import { addMessageAC } from "../../dialogs-reducer.ts"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import Dialogs from "./Dialogs"
+import { appStateType } from "../../redux-store"
+import { dialogType, messageType } from "../../dialogs-reducer"
 
+type mapStatePropsType = {
+    dialog: Array<dialogType>
+    message: Array<messageType>
+    newMessageText: string
+}
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: appStateType):mapStatePropsType => {
     return {
         dialog: state.dialogState.dialogsData,
         message: state.dialogState.messageData,
@@ -14,10 +21,13 @@ const mapStateToProps = (state) => {
         
     }
 }
-const mapDispatchToProps = (dispatch) => {
+type mapDispatchPropsType = {
+    addMessage:(newMessageText:string) => void
+}
+const mapDispatchToProps = (dispatch):mapDispatchPropsType => {
     return {
         
-    addMessage: (newMessageText) => {
+    addMessage: (newMessageText:string) => {
         dispatch(addMessageAC(newMessageText))
         dispatch(reset('dialogAddMessageForm'))
     }
