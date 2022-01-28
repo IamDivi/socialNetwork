@@ -2,8 +2,8 @@ import React from 'react'
 import { FC } from 'react'
 import { userType } from '../../types/types'
 //@ts-ignore
-import Paginator from '../common/Paginator/Paginator.tsx'
-import User from './User.tsx'
+import Paginator from '../common/Paginator/Paginator'
+import User from './User'
 
 import style from "./Users.module.css"
 

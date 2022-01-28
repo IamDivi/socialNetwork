@@ -1,6 +1,6 @@
 
-// @ts-ignore
-import { getAuthUserData } from './auth-reducer.tsx'
+
+import { getAuthUserData } from './auth-reducer'
 
 const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
 

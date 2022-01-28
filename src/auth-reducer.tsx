@@ -1,6 +1,7 @@
 import { stopSubmit } from "redux-form"
 import { ThunkAction } from "redux-thunk"
 import { auth, securityApi } from "./api/api"
+import { ResultCodeEnum } from "./api/apiTypes"
 import { appStateType } from "./redux-store"
 
 const SET_USER_DATA = "AUTH/SET_USER_DATA"
@@ -13,7 +14,7 @@ export type initialStateType = {
     isAuth: boolean,
     captchaUrl: string | null
 }
-const initialState = {
+const initialState:initialStateType = {
     userId: null,
     email: null,
     login: null,
@@ -50,7 +51,7 @@ type ThunkType = ThunkAction<Promise<void>, appStateType, unknown, ActionType>
 export const getAuthUserData = ():ThunkType => {
     return async (dispatch) => {
         const data = await auth.me()
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodeEnum.Success) {
             let { id, login, email } = data.data
             dispatch(setAuthUserData(id, email, login, true))
         }

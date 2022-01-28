@@ -1,14 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
-import { reduxForm } from "redux-form";
+import { InjectedFormProps, reduxForm } from "redux-form";
 import { maxLengthCreator, required } from "../../utils/validators/validators";
 import { createField, Input } from "../common/formControls/FormControls";
-import {login} from "../../auth-reducer.tsx"
-import { Redirect } from "react-router";
+import {login} from "../../auth-reducer"
+import { Redirect } from "react-router-dom";
 import styles from "../common/formControls/FormControls.module.css"
+import { appStateType } from "../../redux-store";
+import { FC } from "react";
 
 const maxLength25 = maxLengthCreator(25)
-const LoginForm = ({captchaUrl, error, handleSubmit }) => {
+type LoginFormOwnProps = {
+    captchaUrl: string | null
+}
+const LoginForm: FC<InjectedFormProps<LoginFormValueTypes, LoginFormOwnProps> & LoginFormOwnProps> = ({captchaUrl, error, handleSubmit }) => {
   
     return <form onSubmit={handleSubmit} >
        
@@ -26,11 +31,23 @@ const LoginForm = ({captchaUrl, error, handleSubmit }) => {
         </div>
     </form>
 }
-const LoginReduxForm = reduxForm({
-    form:"login"
-})(LoginForm)
-const Login = (props) => {
-    const onSubmit = (formData) =>{
+const LoginReduxForm = reduxForm<LoginFormValueTypes, LoginFormOwnProps>({form:"login"})(LoginForm)
+
+type mapStatePropsType = {
+    captchaUrl: null | string
+    isAuth: boolean
+}
+type mapDispatchPropsType = {
+    login:(email: string, password: string, rememberMe: boolean, captcha: string | null) => void
+}
+type LoginFormValueTypes = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: string
+}
+const Login: FC<mapStatePropsType & mapDispatchPropsType> = (props) => {
+    const onSubmit = (formData:LoginFormValueTypes) =>{
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if (props.isAuth) {
@@ -41,7 +58,7 @@ const Login = (props) => {
        <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl} />
     </div>
 }
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: appStateType):mapStatePropsType => ({
     captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth
 })

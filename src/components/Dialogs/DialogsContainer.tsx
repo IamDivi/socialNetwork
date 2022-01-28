@@ -1,7 +1,7 @@
 import { connect } from "react-redux"
 import { compose } from "redux"
 import { reset } from "redux-form"
-import { addMessageAC } from "../../dialogs-reducer.ts"
+import { addMessageAC } from "../../dialogs-reducer"
 import { withAuthRedirect } from "../../hoc/withAuthRedirect"
 import Dialogs from "./Dialogs"
 import { appStateType } from "../../redux-store"

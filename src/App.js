@@ -1,12 +1,12 @@
 import React from 'react';
 import { withRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.css';
-import DialogsContainer from './components/Dialogs/DialogsContainer.tsx';
+import DialogsContainer from './components/Dialogs/DialogsContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login.jsx';
-import ProfileContainer from './components/Profile/ProfileContainer.tsx';
-import UsersContainer from './components/Users/UsersContainer.tsx';
-import { initializeApp } from './app-reducer.ts'
+import Login from './components/Login/Login';
+import ProfileContainer from './components/Profile/ProfileContainer';
+import UsersContainer from './components/Users/UsersContainer';
+import { initializeApp } from './app-reducer'
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Preloader from './components/common/Preloader/Preloader';

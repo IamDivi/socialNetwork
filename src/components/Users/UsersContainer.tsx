@@ -2,10 +2,10 @@ import React from "react"
 import { connect } from "react-redux"
 import { appStateType } from "../../redux-store"
 import { userType } from "../../types/types"
-import { follow, setCurrentPage, unFollow, toggleFollowingProgress, requestUsers} from "../../users-reducer.ts"
-import { getPageSize, getTotalCount, getCurrentPage, getIsFetching, getFollowingInProgress, getUsersSuperSelector, getPortionSize } from "../../users-selectors.ts"
+import { follow, setCurrentPage, unFollow, toggleFollowingProgress, requestUsers} from "../../users-reducer"
+import { getPageSize, getTotalCount, getCurrentPage, getIsFetching, getFollowingInProgress, getUsersSuperSelector, getPortionSize } from "../../users-selectors"
 import Preloader from '../common/Preloader/Preloader'
-import Users from './Users.tsx'
+import Users from './Users'
 
 type mapStatePropsType = {
     currentPage:number

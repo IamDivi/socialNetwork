@@ -1,4 +1,4 @@
-
+import React from 'react'
 import Preloader from "../../common/Preloader/Preloader"
 import style from "./ProfileHeader.module.css"
 import ProfileStatusWihtHook from "./ProfileStatusWithHook"
